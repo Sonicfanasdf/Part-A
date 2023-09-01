@@ -1,0 +1,51 @@
+int fileSize(ifstream &dataFile, string fileOption);
+
+fileOption = inputString("\n\tEnter a data file name: \n\t", true);
+
+			size = fileSize(dataFile, fileOption);
+
+			if (size == 0)
+			{
+
+			}
+			else
+			{
+				int* newArray = new int[size];
+
+				dataFile.open(fileOption);
+
+				if (!dataFile.is_open())
+				{
+					cout << "\n\tFile did not open\n";
+				}
+				else
+				{
+					for (int i = 0; i < size; i++)
+					{
+						dataFile >> newArray[i];
+					}
+					dataFile.close();
+				}
+			}
+int fileSize(ifstream &dataFile, string fileOption)
+{
+	int size = 0;
+	int data = 0;
+
+	dataFile.open(fileOption);
+
+	if (!dataFile.is_open())
+	{
+		cout << "\n\tFile did not open\n";
+	}
+	else
+	{
+		while (!dataFile.eof())
+		{
+			size++;
+			dataFile >> data;
+		}
+
+	}
+	dataFile.close();
+	return size;
